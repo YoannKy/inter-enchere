@@ -10,6 +10,11 @@ yarn install
 yarn serve
 ```
 
+### Start fake server (via json-server)
+```
+yarn server
+```
+
 ### Compiles and minifies for production
 ```
 yarn build

@@ -1,0 +1,61 @@
+<div>
+  <v-container
+    fluid
+    grid-list-lg>
+    <v-toolbar
+     dense
+     floating
+   >
+     <v-text-field
+       hide-details
+       prepend-icon="search"
+       single-line
+     ></v-text-field>
+   </v-toolbar>
+    <v-row v-if="!loading">
+      <v-col v-if="!!sales.length" v-for="(sale, i) in sales" :key="i" md="6    " xs="1">
+        <template>
+          <v-card>
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="overline mb-4">vente numéro: {{ sale.id }}</div>
+                <v-list-item-title class="headline mb-1">  <span v-html="$options.filters.search(sale.title, keyword)"></span></v-list-item-title>
+                <v-list-item-subtitle><span v-html="$options.filters.search(sale.description, keyword)"></span></v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-avatar
+                tile
+                size="80"
+                color="blue"
+              ></v-list-item-avatar>
+            </v-list-item>
+            <item-list-component :items="sale.items" :keyword="keyword"></item-list-component>
+          </v-card>
+        </template>
+      </v-col>
+      <v-col v-if="!sales.length">
+        <v-card>
+          <v-card-title justify="center" align="center">
+            <v-icon
+              large
+              left
+            >
+              report
+            </v-icon>
+            <span class="title font-weight-light">Pas de résultats</span>
+          </v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-if="loading"
+    align="center"
+    justify="center">
+      <v-progress-circular
+      :size="70"
+      :width="7"
+      color="blue"
+      indeterminate
+      ></v-progress-circular>
+    </v-row>
+  </v-container>
+</div>

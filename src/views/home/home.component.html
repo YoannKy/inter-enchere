@@ -1,0 +1,31 @@
+<div>
+  <v-tabs fixed-tabs>
+     <v-tab to="/">Liste</v-tab>
+     <v-tab to="/create">Create</v-tab>
+   </v-tabs>
+
+   <v-dialog
+       v-model="showKonami"
+       width="500"
+     >
+       <v-card>
+         <v-img
+           :src="require('@/assets/konami.gif')"
+         ></v-img>
+
+         <v-divider></v-divider>
+
+         <v-card-actions>
+           <v-spacer></v-spacer>
+           <v-btn
+             color="primary"
+             text
+             @click="showKonami = false"
+           >
+             Close
+           </v-btn>
+         </v-card-actions>
+       </v-card>
+     </v-dialog>
+   <router-view/>
+ </div>

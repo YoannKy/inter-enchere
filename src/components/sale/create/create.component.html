@@ -1,0 +1,43 @@
+<div>
+  <v-container>
+    <template>
+      <v-card>
+        <v-card-text>
+          <form v-if="!loading">
+            <v-text-field
+             v-for="(input, i) in inputs"
+             :key="i"
+             v-model="input.model"
+             :rules="input.rules"
+             :label="input.label"
+             required
+            ></v-text-field>
+          </form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn  color="success" class="mr-4" :disabled="!canBeSubmited" @click="submit">submit</v-btn>
+          <v-btn  color="info" class="mr-4"  :disabled="!canAddMore" @click="addMore">Ajouter un item</v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-progress-linear
+       v-if="loading"
+        color="teal"
+       buffer-value="0"
+       stream
+   ></v-progress-linear>
+    </template>
+  </v-container>
+
+  <v-snackbar
+    v-model="showSnackbar"
+  >
+    {{ message }}
+    <v-btn
+      color="blue"
+      text
+      @click="snackbar = false"
+    >
+      Close
+    </v-btn>
+  </v-snackbar>
+</div>
